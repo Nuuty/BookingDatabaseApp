@@ -28,7 +28,7 @@ namespace BookingDatabaseApp.Model
         #region Crud Methods
         public async void LoadHotelAsync()
         {
-            var hotels = await PersistencyService.LoadHotels();
+            var hotels = await HotelPersistencyService.LoadHotelAsync();
             if (hotels != null)
             {
                 foreach (var hotel in hotels)
@@ -41,20 +41,20 @@ namespace BookingDatabaseApp.Model
         public void SaveHotelAsync(Hotel hotel)
         {
             Hoteller.Add(hotel);
-            PersistencyService.SaveHotel(hotel);
+            HotelPersistencyService.SaveHotelAsync(hotel);
 
         }
 
         public void DeleteHotelAsync(Hotel hotel)
         {
             Hoteller.Remove(hotel);
-            PersistencyService.DeleteHotel(hotel);
+            HotelPersistencyService.DeleteHotelAsync(hotel);
         }
 
         public void UpdateHotelAsync(Hotel hotel)
         {
             Hoteller.Add(hotel);
-            PersistencyService.UpdateHotel(hotel);
+            HotelPersistencyService.UpdateHotelAsync(hotel);
         }
         #endregion
 
