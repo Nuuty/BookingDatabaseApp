@@ -15,7 +15,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView x:Name="listView" HorizontalAlignment="Left" Height="415" Margin="10,5,0,0" VerticalAlignment="Top" Width="1270" ItemsSource="{Binding BookingsRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Button x:Name="button" Content="Søg" HorizontalAlignment="Left" Margin="550,520,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.BookingandRooms, Mode=OneWay}"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="395,515,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="159,465,0,0" VerticalAlignment="Top" Date="{Binding HotelHandler.Chosentime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Page>

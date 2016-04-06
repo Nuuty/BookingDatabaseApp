@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using BookingDatabaseApp.Annotations;
 using BookingDatabaseApp.DTO;
 using BookingDatabaseApp.Model;
 using BookingDatabaseApp.Persistency;
@@ -58,6 +61,8 @@ namespace BookingDatabaseApp.Handler
             get { return _saveCommand ?? (_saveCommand = new RelayCommand(CreateHotel)); }
         }
         private ICommand _updateCommand;
+        private DateTime _chosenTime;
+
         public ICommand UpdateCommand
         {
             get { return _updateCommand ?? (_updateCommand = new RelayCommand(UpdateHotel)); }
@@ -68,6 +73,14 @@ namespace BookingDatabaseApp.Handler
         {
             get { return _selectedItem; }
             set { _selectedItem = value; }
+        }
+
+        private DateTimeOffset _chosentime;
+
+        public DateTimeOffset Chosentime
+        {
+            get { return _chosentime; }
+            set { _chosentime = value;}
         }
 
         public HotelEventHandler(ViewModel.ViewModel hotelVm)
@@ -125,12 +138,13 @@ namespace BookingDatabaseApp.Handler
 
         public async void TodaysBookedRooms()
         {
+            HotelVM.BookingsRooms.Clear();
             var rooms = HotelVM.RoomCatalog.Roomlist;
             var bookings = HotelVM.BookingCatalog.Bookinglist;
             await Task.Delay(200);
             var query = from booking in bookings
-                join room in rooms on booking.Booking_id equals room.Room_No
-                where booking.Date_From >= new DateTime(2010,03,10) && booking.Date_To <= new DateTime(2012,03,10)
+                join room in rooms on booking.Room_No equals room.Room_No
+                where booking.Date_From <= Chosentime && booking.Date_To >= Chosentime
                 select new {booking.Booking_id,booking.Date_From,booking.Date_To,room.Room_No,room.Types,room.Price};
             foreach (var x in query)
             {
