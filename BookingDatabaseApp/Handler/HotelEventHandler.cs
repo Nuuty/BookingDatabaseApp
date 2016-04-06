@@ -86,6 +86,7 @@ namespace BookingDatabaseApp.Handler
         public HotelEventHandler(ViewModel.ViewModel hotelVm)
         {
             HotelVM = hotelVm;
+            Chosentime = new DateTimeOffset(DateTime.Today);
         }
 
         public void CreateHotel()
