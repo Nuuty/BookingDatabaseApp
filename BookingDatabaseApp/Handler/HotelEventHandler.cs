@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using BookingDatabaseApp.Model;
+using BookingDatabaseApp.Persistency;
 
 namespace BookingDatabaseApp.Handler
 {
@@ -35,6 +36,32 @@ namespace BookingDatabaseApp.Handler
             ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
             HotelVM.Catalog.Hoteller.Clear();
             HotelVM.Catalog.LoadHotelAsync();
+        }
+        public async void HotelsinRoskilde()
+        {
+            HotelVM.Catalog.Hoteller.Clear();
+            var hotels = await HotelPersistencyService.LoadHotelAsync();
+            await Task.Delay(200);
+            var query = from hotel in hotels where hotel.Address.Contains("Roskilde") select hotel;
+
+            foreach (var hotel in query)
+            {
+                HotelVM.Catalog.Hoteller.Add(hotel);
+            }
+        }
+
+        public async void LoadAllHotelRooms()
+        {
+            var hotels = await HotelPersistencyService.LoadHotelAsync();
+            var rooms = await RoomPersistencyService.LoadRoomAsync();
+            await Task.Delay(200);
+            var query = from room in hotels
+                        select room;
+            foreach (var element in query)
+            {
+                //AllHotelAndRooms.Add(element);
+            }
+
         }
     }
 }
