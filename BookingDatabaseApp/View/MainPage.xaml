@@ -8,7 +8,6 @@
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="BookingDatabaseApp.MainPage"
     mc:Ignorable="d">
-
     <Page.DataContext>
         <ViewModel:ViewModel/>
     </Page.DataContext>
@@ -22,10 +21,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView x:Name="listView" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Catalog.Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            
-        </ListView>
-        
+        <ListView x:Name="listView" ItemsSource="{Binding Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="-5,-5,5,5" SelectedItem="{Binding HotelHandler.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         <Button x:Name="button_delete" Content="Slet" Grid.Row="1">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
@@ -48,12 +45,16 @@
             </Interactivity:Interaction.Behaviors>
         </Button>
         <Button x:Name="button2" Content="Linq" HorizontalAlignment="Left" Margin="310,65,0,0" Grid.Row="1" VerticalAlignment="Top">
+            
+        </Button>
+        <Button x:Name="button3" Content="DatoBookings" HorizontalAlignment="Left" Margin="445,80,0,0" Grid.Row="1" VerticalAlignment="Top">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
-                    <Core:NavigateToPageAction TargetPage="BookingDatabaseApp.View.Linqview"/>
+                    <Core:NavigateToPageAction TargetPage="BookingDatabaseApp.View.TodaysBookings"/>
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+
 
     </Grid>
 </Page>

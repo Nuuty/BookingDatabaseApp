@@ -10,7 +10,8 @@ namespace BookingDatabaseApp.Model
 {
     class RoomCatalogSingleton
     {
-        public ObservableCollection<Room> RoomsOC { get; set; }
+        
+        public List<Room> Roomlist { get; set; }
         private static readonly RoomCatalogSingleton _instance = new RoomCatalogSingleton();
 
         public static RoomCatalogSingleton Instance
@@ -20,7 +21,9 @@ namespace BookingDatabaseApp.Model
 
         public RoomCatalogSingleton()
         {
-            RoomsOC = new ObservableCollection<Room>();
+            
+            Roomlist = new List<Room>();
+            LoadRoomsAsync();
         }
         public async void LoadRoomsAsync()
         {
@@ -29,28 +32,9 @@ namespace BookingDatabaseApp.Model
             {
                 foreach (var room in rooms)
                 {
-                    RoomsOC.Add(room);
+                    Roomlist.Add(room);
                 }
             }
-        }
-
-        public void SaveRoomAsync(Room room)
-        {
-            RoomsOC.Add(room);
-            RoomPersistencyService.SaveRoomAsync(room);
-
-        }
-
-        public void DeleteRoomAsync(Room Room)
-        {
-            RoomsOC.Remove(Room);
-            RoomPersistencyService.DeleteRoomAsync(Room);
-        }
-
-        public void UpdateRoomAsync(Room Room)
-        {
-            RoomsOC.Add(Room);
-            RoomPersistencyService.UpdateRoomAsync(Room);
         }
     }
 }

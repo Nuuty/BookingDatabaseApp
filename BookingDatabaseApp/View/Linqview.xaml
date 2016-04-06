@@ -13,9 +13,10 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="329" Margin="0,-4,0,0" VerticalAlignment="Top" Width="395" ItemsSource="{Binding Catalog.Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button x:Name="button" Content="Roskilde" HorizontalAlignment="Left" Margin="25,353,0,0" VerticalAlignment="Top" Command="{Binding HotelsinRoskildeCommand, Mode=OneWay}"/>
-        <ListView x:Name="listView1" HorizontalAlignment="Left" Height="249" Margin="475,11,0,0" VerticalAlignment="Top" Width="155" ItemsSource="{Binding HotelHandler.AllHotelAndRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button x:Name="button1" Content="Rooms" HorizontalAlignment="Left" Margin="135,353,0,0" VerticalAlignment="Top" Command="{Binding HotelsandRoomsCommand, Mode=OneWay}"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="554" Margin="405,-4,0,0" VerticalAlignment="Top" Width="875" ItemsSource="{Binding HotelsRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="button" Content="Søg" HorizontalAlignment="Left" Margin="59,503,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button1" Content="Rooms" HorizontalAlignment="Left" Margin="169,440,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.Hotelsandrooms, Mode=OneWay}"/>
+        <ListView x:Name="listView1" HorizontalAlignment="Left" Height="395" Margin="5,5,0,0" VerticalAlignment="Top" Width="350" ItemsSource="{Binding Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding HotelHandler.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="45,443,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
     </Grid>
 </Page>

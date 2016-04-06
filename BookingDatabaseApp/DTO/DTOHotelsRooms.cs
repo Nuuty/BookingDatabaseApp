@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingDatabaseApp.DTO
 {
-    class AllHotelsRooms
+    class DTOHotelsRooms
     {
         public int Hotel_No { get; set; }
 
@@ -20,7 +20,15 @@ namespace BookingDatabaseApp.DTO
 
         public double? Price { get; set; }
 
-
+        public DTOHotelsRooms(int hotelNo, string name, string address, int roomNo, string types, double? price)
+        {
+            Hotel_No = hotelNo;
+            Name = name;
+            Address = address;
+            Room_No = roomNo;
+            Types = types;
+            Price = price;
+        }
         public override string ToString()
         {
             return $"Hotel_No: {Hotel_No}, Name: {Name}, Address: {Address}, Room_No: {Room_No}, Types: {Types}, Price: {Price}";

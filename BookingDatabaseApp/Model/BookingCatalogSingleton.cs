@@ -10,7 +10,8 @@ namespace BookingDatabaseApp.Model
 {
     class BookingCatalogSingleton
     {
-        public ObservableCollection<Booking> BookingsOC { get; set; } 
+        
+        public List<Booking> Bookinglist { get; set; } 
         private static readonly BookingCatalogSingleton _instance = new BookingCatalogSingleton();
 
         public static BookingCatalogSingleton Instance
@@ -20,37 +21,23 @@ namespace BookingDatabaseApp.Model
 
         public BookingCatalogSingleton()
         {
-            BookingsOC = new ObservableCollection<Booking>();
+            
+            Bookinglist = new List<Booking>();
+            LoadBookingAsync();
         }
+
         public async void LoadBookingAsync()
         {
-            var Bookinglist = await BookingPersistencyService.LoadBookingAsync();
-            if (Bookinglist != null)
+            var bookinglist = await BookingPersistencyService.LoadBookingAsync();
+            if (bookinglist != null)
             {
-                foreach (var booking in Bookinglist)
+                foreach (var booking in bookinglist)
                 {
-                    BookingsOC.Add(booking);
+                    Bookinglist.Add(booking);
                 }
             }
         }
 
-        public void SaveBookingAsync(Booking booking)
-        {
-            BookingsOC.Add(booking);
-            BookingPersistencyService.SaveBookingAsync(booking);
-
-        }
-
-        public void DeleteBookingAsync(Booking booking)
-        {
-            BookingsOC.Remove(booking);
-            BookingPersistencyService.DeleteBookingAsync(booking);
-        }
-
-        public void UpdateBookingAsync(Booking booking)
-        {
-            BookingsOC.Add(booking);
-            BookingPersistencyService.UpdateBookingAsync(booking);
-        }
+        
     }
 }
