@@ -99,17 +99,22 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Model\AllHotelRooms.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BookingCatalogSingleton.cs" />
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\GuestCatalogSingleton.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\RoomCatalogSingleton.cs" />
+    <Compile Include="Persistency\RoomsPersistencyService.cs" />
     <Compile Include="View\CreateHotelPage.xaml.cs">
       <DependentUpon>CreateHotelPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditHotelPage.xaml.cs">
       <DependentUpon>EditHotelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Linqview.xaml.cs">
+      <DependentUpon>Linqview.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -148,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditHotelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Linqview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

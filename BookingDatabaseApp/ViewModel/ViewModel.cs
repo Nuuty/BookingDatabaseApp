@@ -50,7 +50,24 @@ namespace BookingDatabaseApp.ViewModel
             set { _selectedItem = value; }
         }
         public HotelEventHandler HotelHandler { get; set; }
-        
+        private ICommand _hotelsinRoskildeCommand;
+
+        public ICommand HotelsinRoskildeCommand
+        {
+            get
+            {
+                return _hotelsinRoskildeCommand ??
+                       (_hotelsinRoskildeCommand = new RelayCommand(HotelHandler.HotelsinRoskilde));
+            }
+        }
+
+        private ICommand _hotelsandrooms;
+
+        public ICommand HotelsandRoomsCommand
+        {
+            get { return _hotelsandrooms ?? (_hotelsandrooms = new RelayCommand(() => HotelHandler.LoadAllHotelRooms())); }
+        }
+
         private ICommand _deleteCommand;
 
         public ICommand DeleteCommand

@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using BookingDatabaseApp.Model;
+using BookingDatabaseApp.Persistency;
 
 namespace BookingDatabaseApp.Handler
 {
     class HotelEventHandler
     {
+        public ObservableCollection<AllHotelRooms> AllHotelAndRooms { get; set; }
+        
         public ViewModel.ViewModel HotelVM { get; set; }
 
         public HotelEventHandler(ViewModel.ViewModel hotelVm)
         {
             HotelVM = hotelVm;
+            AllHotelAndRooms = new ObservableCollection<AllHotelRooms>();
         }
 
         public void CreateHotel()
@@ -35,6 +40,35 @@ namespace BookingDatabaseApp.Handler
             ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
             HotelVM.Catalog.Hoteller.Clear();
             HotelVM.Catalog.LoadHotelAsync();
+        }
+
+        public async void HotelsinRoskilde()
+        {
+            HotelVM.Catalog.Hoteller.Clear();
+            var hotels = await PersistencyService.LoadHotels();
+            await Task.Delay(200);
+            var query = from hotel in hotels where hotel.Address.Contains("Roskilde") select hotel;
+
+            foreach (var hotel in query)
+            {
+                HotelVM.Catalog.Hoteller.Add(hotel);
+            }
+        }
+
+        public async void LoadAllHotelRooms()
+        {
+            AllHotelAndRooms.Clear();
+            //var hotels = await PersistencyService.LoadHotels();
+            //var rooms = await RoomsPersistencyService.LoadRooms();
+            var hotels = await PersistencyService.GetViewAllHotelRooms();
+            await Task.Delay(200);
+            var query = from room in hotels   
+                select room;
+            foreach (var element in query)
+            {
+                AllHotelAndRooms.Add(element);
+            }
+            
         }
     }
 }

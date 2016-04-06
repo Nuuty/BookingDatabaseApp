@@ -5,14 +5,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using BookingDatabaseApp.Model;
 
 namespace BookingDatabaseApp.Persistency
 {
-    class PersistencyService
+    class RoomsPersistencyService
     {
-        public static async Task<List<Hotel>> LoadHotels()
+        public static async Task<List<Room>> LoadRooms()
         {
             const string serverUrl = "http://localhost:1337";
             HttpClientHandler handler = new HttpClientHandler();
@@ -25,11 +24,11 @@ namespace BookingDatabaseApp.Persistency
 
                 try
                 {
-                    var response = client.GetAsync("api/hotels").Result;
+                    var response = client.GetAsync("api/Rooms").Result;
                     if (response.IsSuccessStatusCode)
                     {
-                        var hotels = response.Content.ReadAsAsync<IEnumerable<Hotel>>().Result;
-                        return hotels.ToList();
+                        var Rooms = response.Content.ReadAsAsync<IEnumerable<Room>>().Result;
+                        return Rooms.ToList();
                     }
                 }
                 catch (Exception)
@@ -41,7 +40,7 @@ namespace BookingDatabaseApp.Persistency
 
             }
         }
-        public static async void SaveHotel(Hotel hotel)
+        public static async void SaveRoom(Room Room)
         {
             const string serverUrl = "http://localhost:1337";
             HttpClientHandler handler = new HttpClientHandler();
@@ -54,7 +53,7 @@ namespace BookingDatabaseApp.Persistency
 
                 try
                 {
-                    var response = client.PostAsJsonAsync("api/hotels", hotel).Result;
+                    var response = client.PostAsJsonAsync("api/Rooms", Room).Result;
                 }
                 catch (Exception)
                 {
@@ -64,7 +63,7 @@ namespace BookingDatabaseApp.Persistency
 
             }
         }
-        public static async void DeleteHotel(Hotel hotel)
+        public static async void DeleteRoom(Room Room)
         {
             const string serverUrl = "http://localhost:1337";
             HttpClientHandler handler = new HttpClientHandler();
@@ -77,7 +76,7 @@ namespace BookingDatabaseApp.Persistency
 
                 try
                 {
-                    await client.DeleteAsync("api/hotels/" + hotel.Hotel_No);
+                    await client.DeleteAsync("api/Rooms/" + Room.Room_No);
                 }
                 catch (Exception)
                 {
@@ -88,7 +87,7 @@ namespace BookingDatabaseApp.Persistency
             }
         }
 
-        public static async void UpdateHotel(Hotel hotel)
+        public static async void UpdateRoom(Room Room)
         {
             const string serverUrl = "http://localhost:1337";
             HttpClientHandler handler = new HttpClientHandler();
@@ -101,38 +100,12 @@ namespace BookingDatabaseApp.Persistency
 
                 try
                 {
-                    var response = client.PutAsJsonAsync("api/hotels/" + hotel.Hotel_No, hotel).Result;
+                    var response = client.PutAsJsonAsync("api/Rooms/" + Room.Room_No, Room).Result;
                 }
                 catch (Exception)
                 {
                     throw;
                 }
-            }
-        }
-        public static async Task<List<AllHotelRooms>> GetViewAllHotelRooms()
-        {
-            const string serverUrl = "http://localhost:1337";
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    var response = await client.GetAsync("api/AllHotelRooms");
-                    if (response.IsSuccessStatusCode)
-                    {
-                        List<AllHotelRooms> bookings = await response.Content.ReadAsAsync<List<AllHotelRooms>>();
-                        return bookings;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-                return null;
             }
         }
     }

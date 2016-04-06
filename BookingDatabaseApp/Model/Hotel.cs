@@ -30,7 +30,7 @@ namespace BookingDatabaseApp.Model
 
         public override string ToString()
         {
-            return $"Hotel_No: {Hotel_No}, Name: {Name}, Address: {Address}";
+            return $"Hotel_No: {Hotel_No}, Name: {Name}, Address: {Address}, Room: {Room}";
         }
     }
 }
