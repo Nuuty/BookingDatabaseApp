@@ -8,7 +8,7 @@ namespace BookingDatabaseApp.Persistency
 {
     class DTOGetter
     {
-        private static readonly ApiClient<RoomsGuests> ApiClient = new ApiClient<RoomsGuests>("api/RoomsGuestss");
+        private static readonly ApiClient<RoomsGuests> ApiClient = new ApiClient<RoomsGuests>("api/RoomsGuests");
 
         public static async Task<List<RoomsGuests>> LoadRoomsGuestsAsync()
         {

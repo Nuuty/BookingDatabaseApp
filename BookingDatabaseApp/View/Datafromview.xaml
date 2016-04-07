@@ -13,7 +13,7 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="275" Margin="5,10,0,0" VerticalAlignment="Top" Width="680" ItemsSource="{Binding ViewData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="275" Margin="5,10,0,0" VerticalAlignment="Top" Width="635" ItemsSource="{Binding ViewData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Page>

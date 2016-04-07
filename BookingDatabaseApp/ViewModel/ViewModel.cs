@@ -71,6 +71,7 @@ namespace BookingDatabaseApp.ViewModel
             HotelsRooms = new ObservableCollection<DTOHotelsRooms>();
             BookingsRooms = new ObservableCollection<DTOBookingsRooms>();
             HotelHandler.LoadHotelAsync();
+            HotelHandler.LoadfromView();
 
         }
         #region NotifyPropertyChangedInvocator
