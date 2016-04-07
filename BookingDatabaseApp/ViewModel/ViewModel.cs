@@ -20,6 +20,7 @@ namespace BookingDatabaseApp.ViewModel
 {
     class ViewModel : INotifyPropertyChanged
     {
+        public ObservableCollection<RoomsGuests> ViewData { get; set; }
         public ObservableCollection<Hotel> Hoteller { get; set; }
         public ObservableCollection<Booking> BookingsOC { get; set; }
         public ObservableCollection<Room> RoomsOC { get; set; }
@@ -66,6 +67,7 @@ namespace BookingDatabaseApp.ViewModel
             RoomsOC = new ObservableCollection<Room>();
             BookingsOC = new ObservableCollection<Booking>();
             Guests = new ObservableCollection<Guest>();
+            ViewData = new ObservableCollection<RoomsGuests>();
             HotelsRooms = new ObservableCollection<DTOHotelsRooms>();
             BookingsRooms = new ObservableCollection<DTOBookingsRooms>();
             HotelHandler.LoadHotelAsync();

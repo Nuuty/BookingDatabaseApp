@@ -13,9 +13,10 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="415" Margin="10,5,0,0" VerticalAlignment="Top" Width="1270" ItemsSource="{Binding BookingsRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button x:Name="button" Content="Søg" HorizontalAlignment="Left" Margin="554,444,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.BookingandRooms, Mode=OneWay}"/>
-        <DatePicker HorizontalAlignment="Left" Margin="159,441,0,0" VerticalAlignment="Top" Date="{Binding HotelHandler.Chosentime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="415" Margin="1,5,0,0" VerticalAlignment="Top" Width="1270" ItemsSource="{Binding BookingsRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="button" Content="Søg" HorizontalAlignment="Left" Margin="703,441,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.BookingandRooms, Mode=OneWay}"/>
+        <DatePicker HorizontalAlignment="Left" Margin="300,441,0,0" VerticalAlignment="Top" Date="{Binding HotelHandler.Chosentime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="100,441,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding HotelHandler.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Page>

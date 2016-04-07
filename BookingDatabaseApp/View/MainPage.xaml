@@ -59,6 +59,13 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+        <Button x:Name="button4" Content="View" HorizontalAlignment="Left" Margin="380,40,0,0" Grid.Row="1" VerticalAlignment="Top">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="BookingDatabaseApp.View.Datafromview"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
 
 
     </Grid>

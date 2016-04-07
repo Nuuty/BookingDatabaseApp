@@ -21,6 +21,13 @@ namespace BookingDatabaseApp.Handler
         public ViewModel.ViewModel HotelVM { get; set; }
 
         #region ICommands
+
+        private ICommand _viewData;
+
+        public ICommand ViewData
+        {
+            get { return _viewData ?? (_viewData = new RelayCommand(LoadfromView)); }
+        }
         private ICommand _hotelsinRoskildeCommand;
 
         public ICommand HotelsinRoskildeCommand
@@ -85,6 +92,7 @@ namespace BookingDatabaseApp.Handler
 
         public HotelEventHandler(ViewModel.ViewModel hotelVm)
         {
+            LoadfromView();
             HotelVM = hotelVm;
             Chosentime = new DateTimeOffset(DateTime.Today);
         }
@@ -142,14 +150,28 @@ namespace BookingDatabaseApp.Handler
             HotelVM.BookingsRooms.Clear();
             var rooms = HotelVM.RoomCatalog.Roomlist;
             var bookings = HotelVM.BookingCatalog.Bookinglist;
+            //var hotels = HotelVM.HotelCatalog.Hotellist;
             await Task.Delay(200);
             var query = from booking in bookings
-                join room in rooms on booking.Room_No equals room.Room_No
-                where booking.Date_From <= Chosentime && booking.Date_To >= Chosentime
-                select new {booking.Booking_id,booking.Date_From,booking.Date_To,room.Room_No,room.Types,room.Price};
+                join room in rooms 
+                on new {booking.Room_No,booking.Hotel_No} equals new {room.Room_No,room.Hotel_No}
+                where (booking.Date_From <= Chosentime && booking.Date_To >= Chosentime) && booking.Hotel_No == SelectedItem.Hotel_No
+                select new {booking.Booking_id,booking.Date_From,booking.Date_To,room.Room_No,room.Types,room.Price,booking};
             foreach (var x in query)
             {
                 HotelVM.BookingsRooms.Add(new DTOBookingsRooms(x.Booking_id,x.Date_From,x.Date_To,x.Room_No,x.Types,x.Price));
+            }
+        }
+
+        public async void LoadfromView()
+        {
+            var result = await DTOGetter.LoadRoomsGuestsAsync();
+            if (result != null)
+            {
+                foreach (var x in result)
+                {
+                    HotelVM.ViewData.Add(new RoomsGuests(x.Price,x.Types,x.Hnavn,x.Gnavn,x.Room_no));
+                }
             }
         }
 
