@@ -75,12 +75,7 @@ namespace BookingDatabaseApp.Handler
             get { return _updateCommand ?? (_updateCommand = new RelayCommand(UpdateHotel)); }
         }
         #endregion
-        private static Hotel _selectedItem;
-        public Hotel SelectedItem
-        {
-            get { return _selectedItem; }
-            set { _selectedItem = value; }
-        }
+        
 
         private DateTimeOffset _chosentime;
 
@@ -105,15 +100,15 @@ namespace BookingDatabaseApp.Handler
 
         public void DeleteHotel()
         {
-            DeleteHotelAsync(SelectedItem);
+            DeleteHotelAsync(HotelVM.SelectedItem);
         }
 
         public void UpdateHotel()
         {
-            UpdateHotelAsync(SelectedItem);
+            UpdateHotelAsync(HotelVM.SelectedItem);
             ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
-            HotelVM.Hoteller.Clear();
-            HotelVM.HotelCatalog.LoadHotelAsync();
+            //HotelVM.Hoteller.Clear();
+            //HotelVM.HotelCatalog.LoadHotelAsync();
         }
         public async void HotelsinRoskilde()
         {
@@ -136,7 +131,7 @@ namespace BookingDatabaseApp.Handler
             await Task.Delay(200);
             var query = from room in rooms
                         join hotel in hotels on room.Hotel_No equals hotel.Hotel_No
-                        where room.Hotel_No == SelectedItem.Hotel_No
+                        where room.Hotel_No == HotelVM.SelectedItem.Hotel_No
                         select new {hotel.Hotel_No,hotel.Name,hotel.Address,room.Room_No,room.Types,room.Price};
             foreach (var x in query)
             {
@@ -155,7 +150,7 @@ namespace BookingDatabaseApp.Handler
             var query = from booking in bookings
                 join room in rooms 
                 on new {booking.Room_No,booking.Hotel_No} equals new {room.Room_No,room.Hotel_No}
-                where (booking.Date_From <= Chosentime && booking.Date_To >= Chosentime) && booking.Hotel_No == SelectedItem.Hotel_No
+                where (booking.Date_From <= Chosentime && booking.Date_To >= Chosentime) && booking.Hotel_No == HotelVM.SelectedItem.Hotel_No
                 select new {booking.Booking_id,booking.Date_From,booking.Date_To,room.Room_No,room.Types,room.Price,booking};
             foreach (var x in query)
             {
@@ -189,7 +184,7 @@ namespace BookingDatabaseApp.Handler
         }
         public void SaveHotelAsync(Hotel hotel)
         {
-            HotelVM.Hoteller.Add(hotel);
+            HotelVM.HotelCatalog.Hotellist.Add(hotel);
             HotelPersistencyService.SaveHotelAsync(hotel);
 
         }
@@ -197,12 +192,14 @@ namespace BookingDatabaseApp.Handler
         public void DeleteHotelAsync(Hotel hotel)
         {
             HotelVM.Hoteller.Remove(hotel);
+            HotelVM.HotelCatalog.Hotellist.Remove(hotel);
             HotelPersistencyService.DeleteHotelAsync(hotel);
+            
         }
 
         public void UpdateHotelAsync(Hotel hotel)
         {
-            HotelVM.Hoteller.Add(hotel);
+            //HotelVM.Hoteller.Add(hotel);
             HotelPersistencyService.UpdateHotelAsync(hotel);
         }
         public void SaveBookingAsync(Booking booking)

@@ -21,12 +21,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView x:Name="listView" ItemsSource="{Binding Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="-5,-5,5,5" SelectedItem="{Binding HotelHandler.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView x:Name="listView" ItemsSource="{Binding Hoteller, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="-5,-5,5,5" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button x:Name="button_delete" Content="Slet" Grid.Row="1" Margin="5,40,0,108" VerticalAlignment="Top">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
-                    <Core:InvokeCommandAction Command="{Binding DeleteCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Core:InvokeCommandAction Command="{Binding HotelHandler.DeleteCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>

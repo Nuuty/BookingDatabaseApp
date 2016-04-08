@@ -20,6 +20,7 @@ namespace BookingDatabaseApp.ViewModel
 {
     class ViewModel : INotifyPropertyChanged
     {
+        private static Hotel _selectedItem;
         public ObservableCollection<RoomsGuests> ViewData { get; set; }
         public ObservableCollection<Hotel> Hoteller { get; set; }
         public ObservableCollection<Booking> BookingsOC { get; set; }
@@ -27,10 +28,18 @@ namespace BookingDatabaseApp.ViewModel
         public ObservableCollection<Guest> Guests { get; set; }
         public ObservableCollection<DTOHotelsRooms> HotelsRooms { get; set; }
         public ObservableCollection<DTOBookingsRooms> BookingsRooms { get; set; } 
+
         public HotelCatalogSingleton HotelCatalog { get; } = HotelCatalogSingleton.Instance;
         public RoomCatalogSingleton RoomCatalog { get; } = RoomCatalogSingleton.Instance;
         public BookingCatalogSingleton BookingCatalog { get; } = BookingCatalogSingleton.Instance;
         public GuestCatalogSingleton GuestCatalog { get; } = GuestCatalogSingleton.Instance;
+
+       
+        public Hotel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
         public int HotelNo
         {
             get { return _Hotel_No; }
