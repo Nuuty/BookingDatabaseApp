@@ -66,6 +66,13 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+        <Button x:Name="button5" Content="Routing" Grid.Column="1" HorizontalAlignment="Left" Margin="50,40,0,0" Grid.Row="1" VerticalAlignment="Top">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="BookingDatabaseApp.View.AllRooms"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+            </Button>
 
 
     </Grid>

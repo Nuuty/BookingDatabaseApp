@@ -171,6 +171,18 @@ namespace BookingDatabaseApp.Handler
             }
         }
 
+        public async void LoadHotelsRoomsRouting()
+        {
+            var result = await PersistencyClass.GHotelsRooms("prindsen");
+            if (result != null)
+            {
+                foreach (var x in result)
+                {
+                    HotelVM.HotelRoom.Add(x);
+                }
+            }
+        }
+
         #region CRUD Methods
         public async void LoadHotelAsync()
         {

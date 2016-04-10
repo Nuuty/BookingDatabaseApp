@@ -101,6 +101,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="DTO\DTOBookingsRooms.cs" />
     <Compile Include="DTO\DTOHotelsRooms.cs" />
+    <Compile Include="DTO\HotelsRooms.cs" />
     <Compile Include="DTO\RoomsGuests.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BookingCatalogSingleton.cs" />
@@ -112,7 +113,11 @@
     <Compile Include="Persistency\BookingPersistencyService.cs" />
     <Compile Include="Persistency\DTOGetter.cs" />
     <Compile Include="Persistency\GuestPersistencyService.cs" />
+    <Compile Include="Persistency\PersistencyClass.cs" />
     <Compile Include="Persistency\RoomPersistencyService.cs" />
+    <Compile Include="View\AllRooms.xaml.cs">
+      <DependentUpon>AllRooms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateHotelPage.xaml.cs">
       <DependentUpon>CreateHotelPage.xaml</DependentUpon>
     </Compile>
@@ -160,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AllRooms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateHotelPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

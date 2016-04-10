@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingWebservice.Models;
 
 namespace BookingDatabaseApp.Persistency
 {
@@ -14,5 +15,6 @@ namespace BookingDatabaseApp.Persistency
         {
             return new List<RoomsGuests>(await ApiClient.Get());
         }
+
     }
 }

@@ -14,6 +14,7 @@ using BookingDatabaseApp.DTO;
 using BookingDatabaseApp.Handler;
 using BookingDatabaseApp.Model;
 using BookingDatabaseApp.Persistency;
+using BookingWebservice.Models;
 using Eventmaker.Common;
 
 namespace BookingDatabaseApp.ViewModel
@@ -28,6 +29,7 @@ namespace BookingDatabaseApp.ViewModel
         public ObservableCollection<Guest> Guests { get; set; }
         public ObservableCollection<DTOHotelsRooms> HotelsRooms { get; set; }
         public ObservableCollection<DTOBookingsRooms> BookingsRooms { get; set; } 
+        public ObservableCollection<HotelsRooms> HotelRoom { get; set; }
 
         public HotelCatalogSingleton HotelCatalog { get; } = HotelCatalogSingleton.Instance;
         public RoomCatalogSingleton RoomCatalog { get; } = RoomCatalogSingleton.Instance;
@@ -79,8 +81,11 @@ namespace BookingDatabaseApp.ViewModel
             ViewData = new ObservableCollection<RoomsGuests>();
             HotelsRooms = new ObservableCollection<DTOHotelsRooms>();
             BookingsRooms = new ObservableCollection<DTOBookingsRooms>();
+            HotelRoom = new ObservableCollection<HotelsRooms>();
             HotelHandler.LoadHotelAsync();
             HotelHandler.LoadfromView();
+            HotelHandler.LoadHotelsRoomsRouting();
+            
 
         }
         #region NotifyPropertyChangedInvocator
