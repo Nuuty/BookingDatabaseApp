@@ -26,5 +26,13 @@ namespace BookingDatabaseApp.View
         {
             this.InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            textBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            textBox_Copy.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            textBox_Copy1.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+        }
     }
 }

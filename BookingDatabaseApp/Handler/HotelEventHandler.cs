@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using BookingDatabaseApp.Annotations;
 using BookingDatabaseApp.DTO;
 using BookingDatabaseApp.Model;
