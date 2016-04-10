@@ -5,6 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:BookingDatabaseApp.ViewModel"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     x:Class="BookingDatabaseApp.View.EditHotelPage"
     mc:Ignorable="d">
 
@@ -13,9 +15,17 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="650,145,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Hotel_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="654,218,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="656,305,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="655,388,0,0" VerticalAlignment="Top" Command="{Binding UpdateCommand, Mode=OneWay}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="650,145,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Hotel_No, Mode=TwoWay, UpdateSourceTrigger=Explicit}" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="654,218,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="656,305,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Address, Mode=TwoWay, UpdateSourceTrigger=Explicit}" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Opdater" HorizontalAlignment="Left" Margin="655,388,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.UpdateCommand, Mode=OneWay}" Click="button_Click"/>
+        <Button x:Name="button1" Content="Main" HorizontalAlignment="Left" Margin="800,388,0,0" VerticalAlignment="Top">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Click">
+                    <core:NavigateToPageAction TargetPage="BookingDatabaseApp.MainPage"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </Button>
+
     </Grid>
 </Page>

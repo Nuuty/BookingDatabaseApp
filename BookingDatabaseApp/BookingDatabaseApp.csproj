@@ -99,16 +99,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Model\AllHotelRooms.cs" />
+    <Compile Include="DTO\DTOBookingsRooms.cs" />
+    <Compile Include="DTO\DTOHotelsRooms.cs" />
+    <Compile Include="DTO\HotelsRooms.cs" />
+    <Compile Include="DTO\RoomsGuests.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BookingCatalogSingleton.cs" />
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\GuestCatalogSingleton.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\RoomCatalogSingleton.cs" />
-    <Compile Include="Persistency\RoomsPersistencyService.cs" />
+    <Compile Include="Persistency\ApiClient.cs" />
+    <Compile Include="Persistency\BookingPersistencyService.cs" />
+    <Compile Include="Persistency\DTOGetter.cs" />
+    <Compile Include="Persistency\GuestPersistencyService.cs" />
+    <Compile Include="Persistency\PersistencyClass.cs" />
+    <Compile Include="Persistency\RoomPersistencyService.cs" />
+    <Compile Include="View\AllRooms.xaml.cs">
+      <DependentUpon>AllRooms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateHotelPage.xaml.cs">
       <DependentUpon>CreateHotelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Datafromview.xaml.cs">
+      <DependentUpon>Datafromview.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditHotelPage.xaml.cs">
       <DependentUpon>EditHotelPage.xaml</DependentUpon>
@@ -121,11 +135,14 @@
     </Compile>
     <Compile Include="Handler\HotelEventHandler.cs" />
     <Compile Include="Model\HotelCatalogSingleton.cs" />
-    <Compile Include="Persistency\PersistencyService.cs" />
+    <Compile Include="Persistency\HotelPersistencyService.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Room.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\TodaysBookings.xaml.cs">
+      <DependentUpon>TodaysBookings.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -148,7 +165,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AllRooms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateHotelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Datafromview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +188,10 @@
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TodaysBookings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

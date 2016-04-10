@@ -16,7 +16,7 @@
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="660,155,0,0" TextWrapping="Wrap" Text="{Binding HotelNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Margin="659,215,0,0" TextWrapping="Wrap" Text="{Binding HotelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Margin="660,273,0,0" TextWrapping="Wrap" Text="{Binding HotelAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="663,356,0,0" VerticalAlignment="Top" Command="{Binding SaveCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="663,356,0,0" VerticalAlignment="Top" Command="{Binding HotelHandler.SaveCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Page>

@@ -10,16 +10,38 @@ using System.Windows.Input;
 using Windows.ApplicationModel.Appointments;
 using Windows.Data.Text;
 using BookingDatabaseApp.Annotations;
+using BookingDatabaseApp.DTO;
 using BookingDatabaseApp.Handler;
 using BookingDatabaseApp.Model;
 using BookingDatabaseApp.Persistency;
+using BookingWebservice.Models;
 using Eventmaker.Common;
 
 namespace BookingDatabaseApp.ViewModel
 {
     class ViewModel : INotifyPropertyChanged
     {
-        public HotelCatalogSingleton Catalog { get; } = HotelCatalogSingleton.Instance;
+        private static Hotel _selectedItem;
+        public ObservableCollection<RoomsGuests> ViewData { get; set; }
+        public ObservableCollection<Hotel> Hoteller { get; set; }
+        public ObservableCollection<Booking> BookingsOC { get; set; }
+        public ObservableCollection<Room> RoomsOC { get; set; }
+        public ObservableCollection<Guest> Guests { get; set; }
+        public ObservableCollection<DTOHotelsRooms> HotelsRooms { get; set; }
+        public ObservableCollection<DTOBookingsRooms> BookingsRooms { get; set; } 
+        public ObservableCollection<HotelsRooms> HotelRoom { get; set; }
+
+        public HotelCatalogSingleton HotelCatalog { get; } = HotelCatalogSingleton.Instance;
+        public RoomCatalogSingleton RoomCatalog { get; } = RoomCatalogSingleton.Instance;
+        public BookingCatalogSingleton BookingCatalog { get; } = BookingCatalogSingleton.Instance;
+        public GuestCatalogSingleton GuestCatalog { get; } = GuestCatalogSingleton.Instance;
+
+       
+        public Hotel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
         public int HotelNo
         {
             get { return _Hotel_No; }
@@ -41,71 +63,39 @@ namespace BookingDatabaseApp.ViewModel
         private static int _Hotel_No;
         private static String _Hotel_Name;
         private static String _Hotel_Address;
+        
 
-        private static Hotel _selectedItem;
-
-        public Hotel SelectedItem
-        {
-            get { return _selectedItem; }
-            set { _selectedItem = value; }
-        }
+        
         public HotelEventHandler HotelHandler { get; set; }
-        private ICommand _hotelsinRoskildeCommand;
 
-        public ICommand HotelsinRoskildeCommand
-        {
-            get
-            {
-                return _hotelsinRoskildeCommand ??
-                       (_hotelsinRoskildeCommand = new RelayCommand(HotelHandler.HotelsinRoskilde));
-            }
-        }
+        
 
-        private ICommand _hotelsandrooms;
-
-        public ICommand HotelsandRoomsCommand
-        {
-            get { return _hotelsandrooms ?? (_hotelsandrooms = new RelayCommand(() => HotelHandler.LoadAllHotelRooms())); }
-        }
-
-        private ICommand _deleteCommand;
-
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return _deleteCommand ?? (_deleteCommand = new RelayCommand(HotelHandler.DeleteHotel));
-            }
-        }
-
-        private ICommand _saveCommand;
-
-        public ICommand SaveCommand
-        {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(HotelHandler.CreateHotel)); }
-        }
-
-        private ICommand _updateCommand;
-
-        public ICommand UpdateCommand
-        {
-            get { return _updateCommand ?? (_updateCommand = new RelayCommand(HotelHandler.UpdateHotel)); }
-        }
         public ViewModel()
         {
            
             HotelHandler = new HotelEventHandler(this);
-
+            Hoteller = new ObservableCollection<Hotel>();
+            RoomsOC = new ObservableCollection<Room>();
+            BookingsOC = new ObservableCollection<Booking>();
+            Guests = new ObservableCollection<Guest>();
+            ViewData = new ObservableCollection<RoomsGuests>();
+            HotelsRooms = new ObservableCollection<DTOHotelsRooms>();
+            BookingsRooms = new ObservableCollection<DTOBookingsRooms>();
+            HotelRoom = new ObservableCollection<HotelsRooms>();
+            HotelHandler.LoadHotelAsync();
+            HotelHandler.LoadfromView();
+            HotelHandler.LoadHotelsRoomsRouting();
+            
 
         }
-       
-
+        #region NotifyPropertyChangedInvocator
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        } 
+        #endregion
     }
 }
