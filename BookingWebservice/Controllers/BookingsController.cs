@@ -14,7 +14,7 @@ namespace BookingWebservice.Controllers
 {
     public class BookingsController : ApiController
     {
-        private HotelContext db = new HotelContext();
+        private HotelCloudContext db = new HotelCloudContext();
 
         // GET: api/Bookings
         public IQueryable<Booking> GetBooking()

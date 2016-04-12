@@ -17,7 +17,7 @@ namespace BookingWebservice.Controllers
     [RoutePrefix("api/AllRooms")]
     public class HotelsRoomsController : ApiController
     {
-        private HotelContext db = new HotelContext();
+        private HotelCloudContext db = new HotelCloudContext();
 
         [Route("{name}")]
         [ResponseType(typeof(HotelsRooms))]

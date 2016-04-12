@@ -9,12 +9,13 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingWebservice;
+using BookingWebservice.Models;
 
 namespace BookingWebservice.Controllers
 {
     public class HotelsController : ApiController
     {
-        private HotelContext db = new HotelContext();
+        private HotelCloudContext db = new HotelCloudContext();
 
         // GET: api/Hotels
         public IQueryable<Hotel> GetHotel()
