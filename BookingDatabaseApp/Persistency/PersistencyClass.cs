@@ -12,7 +12,7 @@ namespace BookingDatabaseApp.Persistency
 {
     class PersistencyClass
     {
-        private const string ServerUri = "http://localhost:1337/";
+        private const string ServerUri = "http://bookingwebservice20160412033058.azurewebsites.net/";
         private static HttpClientHandler GetHandler()
         {
             HttpClientHandler handler = new HttpClientHandler() { UseDefaultCredentials = true };

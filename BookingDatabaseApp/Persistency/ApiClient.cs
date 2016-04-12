@@ -21,7 +21,7 @@ namespace BookingDatabaseApp.Persistency
             this.baseUrl = baseUrl;
 
         }
-        public ApiClient(string requestUrl) : this(requestUrl, "http://localhost:1337/")
+        public ApiClient(string requestUrl) : this(requestUrl, "http://bookingwebservice20160412033058.azurewebsites.net/")
         { }
 
         public void UseDefaultCredentials()
